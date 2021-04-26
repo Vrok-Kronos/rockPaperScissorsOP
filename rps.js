@@ -1,33 +1,42 @@
 //create variables named 'playerPoints', 'computerPoints' and 'highscore' to store points to declare a winner(2 points for win, 1 point for tie, 0 points for loss.)
 let playerPoints = 0
   , computerPoints = 0
-  , highscore = 0;
+  , highscore = 0
+  , numOfRound = 1;
 
 //create a variable to store user input named 'playerChoice' and prompt user for their choice of rock, paper, or scissors (case insensitive)
-let playerChoice = `text`
-  , pc = player_choice()
-  , cc = computer_choice();
+let playerPrompt = ``
+  , playerChoice = `text`
+  , pc = 0
+  , cc = 0;
 
 //get player to make a choice
 function player_choice() {
-    let messagetxt = `Please enter 'rock', 'paper', or 'scissors' to start playing.`;
+    let messagetxt = `Please enter 'rock', 'paper', or 'scissors' to start playing. Round ${numOfRound}/5`;
 
     let keeprunning = true;
     while (keeprunning) {
         
-        playerChoice = String(prompt(messagetxt)).toLowerCase();
-
-        if (playerChoice === `rock`) {
+        playerPrompt = prompt(messagetxt);
+        playerChoice = String(playerPrompt).toLowerCase();
+        if (playerPrompt === null) {
+            keeprunning = false;
+            alert(`You have closed the game.`)           
+        } else if (playerChoice === `rock`) {
             //console.log(playerChoice === `rock`);
+            numOfRound += 1;
             keeprunning = false;
         } else if (playerChoice === `paper`) {
             //console.log(playerChoice === `paper`);
+            numOfRound += 1;
             keeprunning = false;
         } else if (playerChoice === `scissors`) {
             //console.log(playerChoice === `scissors`);
+            numOfRound += 1;
             keeprunning = false;
         } else {
-            messagetxt = `That is not a valid option! Please enter 'rock', 'paper', or 'scissors' to start playing.`;
+            messagetxt = `That is not a valid option! Please enter 'rock', 'paper', or 'scissors' to play. Round ${numOfRound}/5`;
+            numOfRound += 0;
             keeprunning = true;
         }
     }
@@ -41,13 +50,16 @@ function computer_choice(choice) {
     return choice;
 }
 
-console.log(pc, cc)
-
 
 
 //create a function named 'compare_choices' that compares the computer's to player's choice, and display a response to result of 'compare choices'
-function compare_choices(pc, cc) {    
+function compare_choices(pc, cc) {   
     
+    pc = player_choice();
+    cc = computer_choice();
+
+    console.log(pc, cc)
+
     if (pc === `rock` && cc === `rock`) {
         playerPoints += 1;
         computerPoints += 1;
@@ -97,20 +109,36 @@ function compare_choices(pc, cc) {
         return invalidOption = `You didn't enter in a valid option!`;
     }
 }
-//console.log(compare_choices(pc, cc));
 
 
 
 //create for loop to run 5 iterations of the 'game'
-for (counter = 1; counter < 5; counter += 1) {
-    player_choice();
-    computer_choice();
-    console.log(pc, cc)
+let counter = 1
+for (; counter <= 5 && playerPrompt !== null; counter += 1) {
     console.log(compare_choices(pc, cc));
     //use console.log to display results and score for each player after each round
     console.log(`You have ${playerPoints} points, the computer has ${computerPoints} points.`);
+    declare_winner();
 }
 
 
+//function to declare winner with most points.
+function declare_winner() {
 
-//player with most points is declared winner.
+    if (playerPrompt === null) {
+        return console.log(`The game has been forfeited!`);
+    } else if (counter < 5) {
+        return;
+    } else {
+        if (playerPoints > computerPoints) {
+            return console.log(`You have won with ${playerPoints} points to the computer's ${computerPoints} points!`);
+        } else if (playerPoints < computerPoints) {
+            return console.log(`You have lost with ${playerPoints} points to the computer's ${computerPoints} points!`);
+        } else if (playerPoints == computerPoints) {
+            return console.log(`It's a tie! You have ${playerPoints} points to the computer's ${computerPoints} points.`);
+        } else {
+            return console.log(`The game has been forfeited!`);
+        }
+    }
+}
+
