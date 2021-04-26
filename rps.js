@@ -1,16 +1,20 @@
 //create variables named 'playerPoints', 'computerPoints' and 'highscore' to store points to declare a winner(2 points for win, 1 point for tie, 0 points for loss.)
+//create variable to keep track of rounds played named 'numOfRound'
 let playerPoints = 0
   , computerPoints = 0
   , highscore = 0
   , numOfRound = 1;
 
 //create a variable to store user input named 'playerChoice' and prompt user for their choice of rock, paper, or scissors (case insensitive)
+//create variable named 'playerPrompt' to allow check for 'null'. I.E. if player cancels the game.
+//initialize variables 'pc' and 'cc' early to allow global scope access
 let playerPrompt = ``
   , playerChoice = `text`
   , pc = 0
   , cc = 0;
 
-//get player to make a choice
+
+//prompt player to make a choice and re-ask if it is not one of the three predetermined options
 function player_choice() {
     let messagetxt = `Please enter 'rock', 'paper', or 'scissors' to start playing. Round ${numOfRound}/5`;
 
@@ -18,6 +22,7 @@ function player_choice() {
     while (keeprunning) {
         
         playerPrompt = prompt(messagetxt);
+        //convert 'playerPrompt' to string for text comparison (String() converts 'null' to a string)
         playerChoice = String(playerPrompt).toLowerCase();
         if (playerPrompt === null) {
             keeprunning = false;
@@ -53,11 +58,13 @@ function computer_choice(choice) {
 
 
 //create a function named 'compare_choices' that compares the computer's to player's choice, and display a response to result of 'compare choices'
-function compare_choices(pc, cc) {   
-    
+function compare_choices(pc, cc) {  
+
+    //call choice functions inside compare_choices for repeat performance :)
     pc = player_choice();
     cc = computer_choice();
 
+    //check that choices are correct going into comparison code
     console.log(pc, cc)
 
     if (pc === `rock` && cc === `rock`) {
@@ -113,13 +120,15 @@ function compare_choices(pc, cc) {
 
 
 //create for loop to run 5 iterations of the 'game'
-let counter = 1
+let counter = 1;
 for (; counter <= 5 && playerPrompt !== null; counter += 1) {
     console.log(compare_choices(pc, cc));
     //use console.log to display results and score for each player after each round
     console.log(`You have ${playerPoints} points, the computer has ${computerPoints} points.`);
+    //run declare_winner each loop to see if its the end of the game, or player has ended it
     declare_winner();
 }
+
 
 
 //function to declare winner with most points.
