@@ -2,54 +2,42 @@
 //create variable to keep track of rounds played named 'numOfRound'
 let playerPoints = 0
   , computerPoints = 0
-  , highscore = 0
   , numOfRound = 1;
 
 //create a variable to store user input named 'playerChoice' and prompt user for their choice of rock, paper, or scissors (case insensitive)
 //create variable named 'playerPrompt' to allow check for 'null'. I.E. if player cancels the game.
-//initialize variables 'pc' and 'cc' early to allow global scope access
 let playerPrompt = ``
-  , playerChoice = `text`
-  , pc = 0
-  , cc = 0;
+  , playerChoice = `text`;
 
 
 //prompt player to make a choice and re-ask if it is not one of the three predetermined options
-function player_choice() {
+function get_player_choice() {
     let messagetxt = `Please enter 'rock', 'paper', or 'scissors' to start playing. Round ${numOfRound}/5`;
 
-    let keeprunning = true;
-    while (keeprunning) {
+    let keepRunning = true;
+    while (keepRunning) {
         
         playerPrompt = prompt(messagetxt);
         //convert 'playerPrompt' to string for text comparison (String() converts 'null' to a string)
         playerChoice = String(playerPrompt).toLowerCase();
         if (playerPrompt === null) {
-            keeprunning = false;
+            keepRunning = false;
             alert(`You have closed the game.`)           
-        } else if (playerChoice === `rock`) {
+        } else if (playerChoice === `rock` || playerChoice === `paper` || playerChoice === `scissors`) {
             //console.log(playerChoice === `rock`);
             numOfRound += 1;
-            keeprunning = false;
-        } else if (playerChoice === `paper`) {
-            //console.log(playerChoice === `paper`);
-            numOfRound += 1;
-            keeprunning = false;
-        } else if (playerChoice === `scissors`) {
-            //console.log(playerChoice === `scissors`);
-            numOfRound += 1;
-            keeprunning = false;
+            keepRunning = false;
         } else {
             messagetxt = `That is not a valid option! Please enter 'rock', 'paper', or 'scissors' to play. Round ${numOfRound}/5`;
             numOfRound += 0;
-            keeprunning = true;
+            keepRunning = true;
         }
     }
     return playerChoice;
 }
 
 //computer makes it's choice
-function computer_choice(choice) {
+function make_computer_choice(choice) {
     let choiceArray = [`rock`, `paper`, `scissors`];
     choice = choiceArray[Math.floor(Math.random() * choiceArray.length)];
     return choice;
@@ -61,8 +49,8 @@ function computer_choice(choice) {
 function compare_choices(pc, cc) {  
 
     //call choice functions inside compare_choices for repeat performance :)
-    pc = player_choice();
-    cc = computer_choice();
+    pc = get_player_choice();
+    cc = make_computer_choice();
 
     //check that choices are correct going into comparison code
     console.log(pc, cc)
@@ -122,7 +110,7 @@ function compare_choices(pc, cc) {
 //create for loop to run 5 iterations of the 'game'
 let counter = 1;
 for (; counter <= 5 && playerPrompt !== null; counter += 1) {
-    console.log(compare_choices(pc, cc));
+    console.log(compare_choices());
     //use console.log to display results and score for each player after each round
     console.log(`You have ${playerPoints} points, the computer has ${computerPoints} points.`);
     //run declare_winner each loop to see if its the end of the game, or player has ended it
