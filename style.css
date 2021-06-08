@@ -17,20 +17,17 @@
 
 #rock {
 	font-family: rock-font;
+	background-color: darkgrey;
 }
 
 #paper {
 	font-family: paper-font;
+	background-color: ivory;
 }
 
 #scissors {
 	font-family: scis-font;
-}
-
-#pageTitle {
-	margin: 10px auto;
-	text-align: center;
-	font-size: calc(32px + 6vw);
+	background-color: lightgrey;
 }
 
 .rock {
@@ -45,12 +42,6 @@
 	font-family: scis-font;
 }
 
-.hSelection {
-	display: block;
-	margin: 10px auto;
-	font-size: calc(24px + 6vw);
-}
-
 body {
 	background-color: whitesmoke;
 }
@@ -61,13 +52,60 @@ h1 {
 	display: inline;
 }
 
-p {
-	margin: 15px auto;
-	text-align: center;
-	font-size: calc(16px + 2vw);
+@media screen and (max-width: 400px) {
+
+	#pageTitle {
+		margin: 10px auto;
+		text-align: center;
+		font-size: calc(24px + 6vw);
+	}
+
+	.hSelection {
+		display: block;
+		margin: 10px auto;
+		font-size: calc(12px + 5vw);
+	}
+	
+	button {
+		height: calc(60px + 4vw);
+		width: calc(100px + 14vw);
+		border-radius: 8px;
+		border-width: 4px;
+	}
+	
+	p {
+		margin: 15px auto;
+		text-align: center;
+		font-size: calc(12px + 1.5vw);
+	}
+
 }
 
-button {
-	height: calc(48px + 4vw);
-	width: calc(280px + 14vw);
+@media screen and (min-width: 401px) {
+
+	#pageTitle {
+		margin: 10px auto;
+		text-align: center;
+		font-size: calc(32px + 6vw);
+	}
+
+	.hSelection {
+		display: block;
+		margin: 10px auto;
+		font-size: calc(24px + 6vw);
+	}
+
+	button {
+		height: calc(60px + 4vw);
+		width: calc(280px + 14vw);
+		border-radius: 8px;
+		border-width: 4px;
+	}
+	
+	p {
+		margin: 15px auto;
+		text-align: center;
+		font-size: calc(16px + 1.5vw);
+	}
+
 }
