@@ -69,5 +69,5 @@ p {
 
 button {
 	height: calc(48px + 4vw);
-	width: 40vw;
+	width: calc(280px + 14vw);
 }
