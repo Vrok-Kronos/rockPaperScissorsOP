@@ -30,7 +30,7 @@
 #pageTitle {
 	margin: 10px auto;
 	text-align: center;
-	font-size: calc(20px + 5vw);
+	font-size: calc(32px + 6vw);
 }
 
 .rock {
@@ -48,7 +48,11 @@
 .hSelection {
 	display: block;
 	margin: 10px auto;
-	font-size: calc(15px + 2vw);
+	font-size: calc(24px + 6vw);
+}
+
+body {
+	background-color: whitesmoke;
 }
 
 h1 {
@@ -58,6 +62,12 @@ h1 {
 }
 
 p {
-	margin: 10px auto;
+	margin: 15px auto;
 	text-align: center;
+	font-size: calc(16px + 2vw);
+}
+
+button {
+	height: calc(48px + 4vw);
+	width: 40vw;
 }
