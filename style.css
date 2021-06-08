@@ -1,0 +1,63 @@
+/*Code by Vrok Kronos (07/06/21)*/
+@font-face {
+	font-family: rock-font;
+	src: url(./fonts/Stone-block.otf);
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: paper-font;
+	src: url(./fonts/KGPrimaryPenmanshipLined.ttf);
+}
+
+@font-face {
+	font-family: scis-font;
+	src: url(./fonts/Scizzors-oVyV.ttf);
+}
+
+#rock {
+	font-family: rock-font;
+}
+
+#paper {
+	font-family: paper-font;
+}
+
+#scissors {
+	font-family: scis-font;
+}
+
+#pageTitle {
+	margin: 10px auto;
+	text-align: center;
+	font-size: calc(20px + 5vw);
+}
+
+.rock {
+	font-family: rock-font;
+}
+
+.paper {
+	font-family: paper-font;
+}
+
+.scissors {
+	font-family: scis-font;
+}
+
+.hSelection {
+	display: block;
+	margin: 10px auto;
+	font-size: calc(15px + 2vw);
+}
+
+h1 {
+	margin: 10px auto;
+	text-align: center;
+	display: inline;
+}
+
+p {
+	margin: 10px auto;
+	text-align: center;
+}
